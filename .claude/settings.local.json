@@ -11,7 +11,16 @@
       "Bash(git commit -m ':*)",
       "Bash(uvx --version)",
       "Bash(uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai claude --force)",
-      "Bash(git check-ignore:*)"
+      "Bash(git check-ignore:*)",
+      "Bash(.specify/extensions/git/scripts/bash/create-new-feature.sh:*)",
+      "Bash(git -C /Users/kohei/dev/wake-or-pay branch --show-current)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh:*)",
+      "Bash(.specify/scripts/bash/setup-plan.sh:*)",
+      "Bash(.specify/scripts/bash/update-agent-context.sh claude:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh label:*)",
+      "Bash(find /Users/kohei/dev/wake-or-pay/.claude/skills/speckit-*/SKILL.md -exec basename {} \\\\;)"
     ]
   }
 }
