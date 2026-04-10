@@ -1,36 +1,42 @@
-# Node.js
-node_modules/
-dist/
-build/
-coverage/
-**/npm-debug.log*
-**/yarn-debug.log*
-**/yarn-error.log*
-**/pnpm-debug.log*
-.DS_Store
-.env
-.env.*
-.cache/
-public/build/
-.next/
-.nuxt/
-*.local
-*.log
-.idea/
-.vscode/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Spec Kit & Vendor Generated Files
-.specify
-.github/prompts
-.github/agents
-.claude/skills/speckit-analyze
-.claude/skills/speckit-analyze/SKILL.md
-.claude/skills/speckit-checklist
-.claude/skills/speckit-clarify
-.claude/skills/speckit-constitution
-.claude/skills/speckit-implement
-.claude/skills/speckit-plan
-.claude/skills/speckit-specify
-.claude/skills/speckit-tasks
-.claude/skills/speckit-taskstoissues
-.gemini/commands
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.local.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
