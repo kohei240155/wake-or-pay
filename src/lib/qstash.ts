@@ -18,7 +18,7 @@ export async function scheduleAlarm(
 }
 
 export async function cancelAlarm(messageId: string): Promise<void> {
-  await client.messages.delete(messageId);
+  await client.messages.cancel(messageId);
 }
 
 export interface PendingAlarm {
