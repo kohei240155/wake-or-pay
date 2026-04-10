@@ -20,7 +20,14 @@
       "Bash(gh repo:*)",
       "Bash(gh issue:*)",
       "Bash(gh label:*)",
-      "Bash(find /Users/kohei/dev/wake-or-pay/.claude/skills/speckit-*/SKILL.md -exec basename {} \\\\;)"
+      "Bash(find /Users/kohei/dev/wake-or-pay/.claude/skills/speckit-*/SKILL.md -exec basename {} \\\\;)",
+      "Bash(git commit:*)",
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(ls /Users/kohei/dev/wake-or-pay/node_modules/@upstash/qstash/dist/*.d.ts)",
+      "Bash(npm run:*)",
+      "Bash(git push:*)"
     ]
   }
 }
