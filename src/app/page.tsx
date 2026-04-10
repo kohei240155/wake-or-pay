@@ -42,25 +42,59 @@ export default function Home() {
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  /* --- 初回マウント: localStorage から復元 --- */
+  /* --- 初回マウント: localStorage から復元、なければサーバーに問い合わせ --- */
   useEffect(() => {
     const stored = loadAlarm();
-    if (!stored) return;
-
-    if (stored.status === "scheduled" && stored.fireAt < Date.now()) {
-      // 期限切れ → punished と推定
-      const updated: Alarm = {
-        ...stored,
-        status: "punished",
-        punishedAt: Date.now(),
-      };
-      saveAlarm(updated);
-      setAlarm(updated);
-      setScreen("punished");
-    } else {
-      setAlarm(stored);
-      setScreen(stored.status === "scheduled" ? "scheduled" : stored.status);
+    if (stored) {
+      if (stored.status === "scheduled" && stored.fireAt < Date.now()) {
+        // 期限切れ → punished と推定
+        const updated: Alarm = {
+          ...stored,
+          status: "punished",
+          punishedAt: Date.now(),
+        };
+        saveAlarm(updated);
+        setAlarm(updated);
+        setScreen("punished");
+      } else {
+        setAlarm(stored);
+        setScreen(stored.status === "scheduled" ? "scheduled" : stored.status);
+      }
+      return;
     }
+
+    // localStorage が空 → サーバー側の QStash から未実行スケジュールを復元
+    (async () => {
+      try {
+        const res = await fetch("/api/schedule");
+        if (!res.ok) return;
+        const data = (await res.json()) as {
+          ok: boolean;
+          alarm: { alarmId: string; fireAt: number; messageId: string } | null;
+        };
+        if (!data.ok || !data.alarm) return;
+
+        const recovered: Alarm = {
+          id: data.alarm.alarmId,
+          fireAt: data.alarm.fireAt,
+          status: "scheduled",
+          createdAt: Date.now(),
+          qstashMessageId: data.alarm.messageId,
+        };
+
+        // 既に期限切れの場合
+        if (recovered.fireAt < Date.now()) {
+          recovered.status = "punished";
+          recovered.punishedAt = Date.now();
+        }
+
+        saveAlarm(recovered);
+        setAlarm(recovered);
+        setScreen(recovered.status === "scheduled" ? "scheduled" : recovered.status);
+      } catch {
+        // サーバー問い合わせ失敗 → 何もしない（set 画面のまま）
+      }
+    })();
   }, []);
 
   /* --- カウントダウンタイマー --- */

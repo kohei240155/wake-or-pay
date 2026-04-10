@@ -1,5 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
-import { scheduleAlarm, cancelAlarm } from "@/lib/qstash";
+import { scheduleAlarm, cancelAlarm, findPendingAlarm } from "@/lib/qstash";
+
+export async function GET() {
+  try {
+    const pending = await findPendingAlarm();
+
+    if (!pending) {
+      return NextResponse.json({ ok: true, alarm: null });
+    }
+
+    return NextResponse.json({
+      ok: true,
+      alarm: {
+        alarmId: pending.alarmId,
+        fireAt: pending.fireAt,
+        messageId: pending.messageId,
+      },
+    });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "unexpected error";
+    return NextResponse.json(
+      { ok: false, reason: message },
+      { status: 500 },
+    );
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
