@@ -8,20 +8,19 @@ interface PunishResult {
 }
 
 /**
- * OpenAI GPT-4o を呼び出してペナルティを実行する。
- * 課金を発生させることが目的。
+ * OpenAI o1 を呼び出してペナルティを実行する。
+ * 課金（~10円/回）を発生させることが目的。
  */
 export async function executePunishment(alarmId: string): Promise<PunishResult> {
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   try {
     const response = await client.chat.completions.create({
-      model: "gpt-4o",
+      model: "o1",
       messages: [
-        { role: "system", content: PUNISH_PROMPT },
         {
           role: "user",
-          content: `alarmId: ${alarmId} - 寝坊しました。ペナルティを実行してください。`,
+          content: `${PUNISH_PROMPT}\n\nalarmId: ${alarmId} - 寝坊しました。ペナルティを実行してください。`,
         },
       ],
     });
