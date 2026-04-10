@@ -1,0 +1,60 @@
+name: Documentation
+description: Suggest documentation or knowledge sharing
+title: 'Docs: [Topic] - [Brief Description]'
+labels: ['documentation']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Documentation Request
+        Help us improve our docs by suggesting what's needed and who it's for.
+  - type: input
+    id: spec-reference
+    attributes:
+      label: Spec Reference (optional)
+      description: e.g., PRD-R5, TRD-R2, or leave blank
+      placeholder: PRD-R#
+    validations:
+      required: false
+  - type: textarea
+    id: gherkin-acceptance-criteria
+    attributes:
+      label: Acceptance Criteria (Gherkin)
+      description: |
+        Define doc completion using Given/When/Then format.
+      placeholder: |
+        Given a user looking for [topic],
+        When they read the new documentation,
+        Then they can successfully complete [action].
+    validations:
+      required: true
+  - type: textarea
+    id: topics-to-cover
+    attributes:
+      label: Topics to Cover
+      description: |
+        - Topic 1
+        - Topic 2
+    validations:
+      required: true
+  - type: checkboxes
+    id: documentation-format
+    attributes:
+      label: Documentation Format
+      options:
+        - label: README section
+          required: false
+        - label: Markdown file in `/docs`
+          required: false
+        - label: Code comments
+          required: false
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: Related Issues
+      description: |
+        - Related to #XXX
+        - Completes #YYY
+    validations:
+      required: false
+

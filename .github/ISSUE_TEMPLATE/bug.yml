@@ -1,0 +1,111 @@
+name: Bug Report
+description: Report a bug or issue
+title: 'Bug: [Component] - [Brief Description]'
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for reporting a bug
+        Please provide clear steps to reproduce and the expected vs actual behavior.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Clear description of what is not working.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: |
+        1. Step 1
+        2. Step 2
+        3. Step 3
+      placeholder: |
+        1. Start the application
+        2. Navigate to...
+        3. Observe the issue
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happens instead?
+    validations:
+      required: true
+  - type: input
+    id: spec-reference
+    attributes:
+      label: Spec Reference (optional)
+      description: e.g., PRD-R5, TRD-R2, or leave blank if not from a spec
+      placeholder: PRD-R#
+    validations:
+      required: false
+  - type: textarea
+    id: gherkin-acceptance-criteria
+    attributes:
+      label: Acceptance Criteria (Gherkin)
+      description: |
+        Define the "fixed" state using Given/When/Then format.
+      placeholder: |
+        Given <initial state>,
+        When <action>,
+        Then <expected result>.
+        Then the actual behavior matches the expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: root-cause
+    attributes:
+      label: Root Cause (if known)
+      description: If you have any hypothesis about what's causing this, share it here.
+    validations:
+      required: false
+  - type: checkboxes
+    id: test-strategy
+    attributes:
+      label: Test Strategy (Verification)
+      options:
+        - label: "[Automated Test]: (New test case to reproduce and verify fix)"
+          required: false
+        - label: "[Manual Verification]: (Steps to verify fix works)"
+          required: false
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: Related Issues
+      description: |
+        - Similar to #XXX
+        - Related to #YYY
+    validations:
+      required: false
+  - type: checkboxes
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - label: Critical (blocks usage/deployment)
+          required: false
+        - label: High (major functionality broken)
+          required: false
+        - label: Medium (works but degraded)
+          required: false
+        - label: Low (minor issue, workaround exists)
+          required: false
+  - type: checkboxes
+    id: speckit-confirmation
+    attributes:
+      label: Speckit Workflow Confirmation
+      options:
+        - label: I confirm I have followed the Speckit workflow and verified environment details.
+          required: true

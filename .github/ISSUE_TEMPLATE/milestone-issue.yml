@@ -1,0 +1,40 @@
+name: Milestone Work Item
+description: Track a roadmap deliverable or release goal
+title: 'Milestone: [Name]'
+labels: ['roadmap']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Milestone
+        Define a release goal or major deliverable for tracking progress.
+  - type: input
+    id: spec-reference
+    attributes:
+      label: Spec Reference (optional)
+      description: e.g., PRD-R1 through PRD-R5 (which roadmap this covers)
+      placeholder: PRD-R#
+    validations:
+      required: false
+  - type: textarea
+    id: gherkin-acceptance-criteria
+    attributes:
+      label: Acceptance Criteria (Gherkin)
+      description: |
+        Define milestone completion using Given/When/Then format.
+      placeholder: |
+        Given the milestone objectives,
+        When the implementation is complete,
+        Then all requirements are met and [outcome] is verified.
+    validations:
+      required: true
+  - type: textarea
+    id: test-plan
+    attributes:
+      label: Test Plan
+      description: |
+        - [ ] Run full validation suite (make test, npm test, cargo test, etc.)
+        - [ ] Additional verification steps:
+    validations:
+      required: true
+

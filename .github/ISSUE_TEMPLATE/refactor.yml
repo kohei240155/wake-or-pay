@@ -1,0 +1,112 @@
+name: Refactoring
+description: Propose code refactoring or technical improvements
+title: 'Refactor: [Component] - [Benefit]'
+labels: ['refactor']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Code Refactoring
+        Help improve code quality, structure, or maintainability without changing behavior.
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current State
+      description: |
+        - Current implementation overview
+        - Pain points with current design
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-state
+    attributes:
+      label: Proposed State
+      description: |
+        - New architecture or approach
+        - Benefits of refactoring
+    validations:
+      required: true
+  - type: input
+    id: spec-reference
+    attributes:
+      label: Spec Reference (optional)
+      description: e.g., PRD-R5, TRD-R2, or leave blank
+      placeholder: PRD-R#
+    validations:
+      required: false
+  - type: textarea
+    id: gherkin-acceptance-criteria
+    attributes:
+      label: Acceptance Criteria (Gherkin)
+      description: |
+        Define success using Given/When/Then format. Ensure behavioral parity.
+      placeholder: |
+        Given the existing test suite,
+        When the refactor is applied,
+        Then all existing tests pass and [improvement goal] is achieved.
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope-of-changes
+    attributes:
+      label: Scope of Changes
+      options:
+        - label: Component/Module 1
+          required: false
+        - label: Component/Module 2
+          required: false
+        - label: Associated tests
+          required: false
+        - label: Documentation
+          required: false
+  - type: checkboxes
+    id: test-strategy
+    attributes:
+      label: Test Strategy
+      options:
+        - label: "[Regression Testing]: (Ensure existing tests pass)"
+          required: true
+        - label: "[New Coverage]: (If refactor adds testing seams)"
+          required: false
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: Related Issues (optional)
+      description: |
+        - Depends on #XXX
+        - Blocks #YYY
+    validations:
+      required: false
+  - type: dropdown
+    id: effort-estimate
+    attributes:
+      label: Effort Estimate
+      description: Estimate (2/3/5/8 story points) - based on scope
+      options:
+        - "2"
+        - "3"
+        - "5"
+        - "8"
+    validations:
+      required: false
+  - type: textarea
+    id: risk-assessment
+    attributes:
+      label: Risk Assessment
+      description: |
+        - What could go wrong?
+        - Mitigation strategies
+        - Fail-Closed Validation (ensure new/updated gates do not swallow subprocess errors)
+        - Robust Pathing (avoid Path.cwd() in CLI code; use absolute resolution from repo root)
+        - Artifact Hygiene (ensure any new metadata/registries are added to .gitignore)
+        - Hermetic Test Architecture (test infinite streams/singletons in isolated subprocesses)
+        - Dependency Parity (regenerate hashed lockfiles if dependencies change)
+    validations:
+      required: true
+  - type: checkboxes
+    id: speckit-confirmation
+    attributes:
+      label: Speckit Workflow Confirmation
+      options:
+        - label: I confirm I have followed the Speckit workflow and verified environment details.
+          required: true

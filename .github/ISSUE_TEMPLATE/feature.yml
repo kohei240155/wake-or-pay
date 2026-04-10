@@ -1,0 +1,96 @@
+name: Feature Request
+description: Propose a new feature or enhancement
+title: 'Feature: [Component] - [Brief Description]'
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        Describe the feature clearly, including why it's needed and what success looks like.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Clear, concise description of the feature.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why (Problem & Use Case)
+      description: Business justification. Why is this needed? What problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story (optional)
+      description: "As a [user type], I want to [action], so that [benefit]."
+    validations:
+      required: false
+  - type: input
+    id: spec-reference
+    attributes:
+      label: Spec Reference (optional)
+      description: e.g., PRD-R1, TRD-R3, or leave blank if not from a spec
+      placeholder: PRD-R#
+    validations:
+      required: false
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: |
+        List the key requirements for this feature.
+      placeholder: |
+        - [ ] Requirement 1
+        - [ ] Requirement 2
+        - [ ] Requirement 3
+    validations:
+      required: true
+  - type: textarea
+    id: gherkin-acceptance-criteria
+    attributes:
+      label: Acceptance Criteria (Gherkin)
+      description: |
+        Define success using Given/When/Then format. Include documentation/UI updates if relevant.
+      placeholder: |
+        Given <initial state>,
+        When <user action>,
+        Then <expected result>.
+    validations:
+      required: true
+        - Dependency Parity (Mandatory: regenerate hashed lockfiles if dependencies change)
+        - Automation Feasibility (Avoid fully automating complex cognitive decisions, e.g., balancing sprints or diagramming, purely in bash scripts)
+    validations:
+      required: false
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: Related Issues
+      description: |
+        - Related to #XXX
+        - Depends on #YYY
+        - Blocks #ZZZ
+    validations:
+      required: false
+  - type: dropdown
+    id: effort-estimate
+    attributes:
+      label: Effort Estimate (Optional)
+      description: "Rough estimate: 2/3/5/8 story points (estimate after triage)"
+      options:
+        - "2"
+        - "3"
+        - "5"
+        - "8"
+    validations:
+      required: false
+  - type: checkboxes
+    id: speckit-confirmation
+    attributes:
+      label: Speckit Workflow Confirmation
+      options:
+        - label: I confirm I have followed the Speckit workflow and verified environment details.
+          required: true

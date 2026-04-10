@@ -1,0 +1,68 @@
+name: Technical Debt
+description: Track technical debt and improvements
+title: 'Technical Debt: [Component] - [Issue]'
+labels: ['technical-debt']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Technical Debt
+        Identify technical improvements, cleanup, or long-term maintenance items.
+  - type: input
+    id: spec-reference
+    attributes:
+      label: Spec Reference (optional)
+      description: e.g., PRD-R5, TRD-R2, or leave blank
+      placeholder: PRD-R#
+    validations:
+      required: false
+  - type: textarea
+    id: gherkin-acceptance-criteria
+    attributes:
+      label: Acceptance Criteria (Gherkin)
+      description: |
+        Define debt resolution using Given/When/Then format.
+      placeholder: |
+        Given the current [technical debt],
+        When [remediation action],
+        Then the debt is resolved and [benefit] is realized.
+    validations:
+      required: true
+  - type: textarea
+    id: current-impact
+    attributes:
+      label: Current Impact
+      description: |
+        - Performance implications
+        - Maintenance burden
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How could this be addressed?
+    validations:
+      required: true
+  - type: dropdown
+    id: effort-estimate
+    attributes:
+      label: Effort Estimate
+      description: Estimate (2/3/5/8 story points) to address
+      options:
+        - "2"
+        - "3"
+        - "5"
+        - "8"
+    validations:
+      required: false
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: Related Issues
+      description: |
+        - Similar to #XXX
+        - Contributes to #YYY
+    validations:
+      required: false
+
