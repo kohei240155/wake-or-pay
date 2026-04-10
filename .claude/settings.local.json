@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh --version)",
+      "Bash(uv --version)",
+      "Bash(specify --help)",
+      "Bash(gh auth:*)",
+      "Bash(specify init:*)",
+      "Bash(uv tool:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(uvx --version)",
+      "Bash(uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai claude --force)",
+      "Bash(git check-ignore:*)"
+    ]
+  }
+}
